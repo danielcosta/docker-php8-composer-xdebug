@@ -6,11 +6,6 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 RUN apk add --no-cache --update --virtual .phpize-deps $PHPIZE_DEPS
 
-#RUN apk add --no-cache --update postgresql-dev &&\
-#RUN docker-php-ext-install pdo_mysql
-
-#COPY --from=extensions /usr/local/lib/php/extensions/no-debug-non-zts-20210902/pdo_mysql.so /usr/local/lib/php/extensions/no-debug-non-zts-20210902/pdo_mysql.so
-
 RUN pecl install xdebug
 RUN rm -rf /tmp/* &&\
     apk del .phpize-deps
