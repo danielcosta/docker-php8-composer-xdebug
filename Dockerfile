@@ -1,6 +1,6 @@
 FROM composer:2 AS composer
 
-FROM php:8.1-cli-alpine AS extensions
+FROM php:8-cli-alpine AS extensions
 
 RUN apk add --no-cache --update --virtual .phpize-deps $PHPIZE_DEPS
 
@@ -8,7 +8,7 @@ RUN pecl install xdebug
 RUN rm -rf /tmp/* &&\
     apk del .phpize-deps
 
-FROM php:8.1-cli-alpine AS final
+FROM php:8-cli-alpine AS final
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
