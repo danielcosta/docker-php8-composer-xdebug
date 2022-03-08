@@ -22,3 +22,8 @@ RUN docker-php-ext-enable xdebug
 RUN apk add --update git openssh
 
 RUN addgroup -g 1000 developer && adduser -u 1000 -h /home/developer -G developer -s /bin/sh -D developer
+
+RUN apk add sudo &&\
+    echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel &&\
+    echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/wheel &&\
+    adduser developer wheel
