@@ -19,7 +19,7 @@ COPY --from=extensions /usr/local/lib/php/extensions/no-debug-non-zts-20210902/x
 
 RUN docker-php-ext-enable xdebug
 
-RUN apk add --update git openssh
+RUN apk add --update git openssh unzip
 
 RUN addgroup -g 1000 developer && adduser -u 1000 -h /home/developer -G developer -s /bin/sh -D developer
 
